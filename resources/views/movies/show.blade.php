@@ -26,5 +26,15 @@
 <p>{{$comment->created_at}}</p>
 @empty<span>No comments</span>
 @endforelse
-
+<form class="mt-3" action="{{route('createComment',['movie'=> $movie->id])}}" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="content">Add comment:</label>
+        <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+        @error('content')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+    </div>
+    <button type="submit" class="btn-primary">Submit</button>
+</form>
 @endsection
