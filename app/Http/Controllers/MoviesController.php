@@ -16,6 +16,8 @@ class MoviesController extends Controller
     }
     public function show(Movie $movie)
     {
+        $movie->load(['comments']);
+
         return view('movies.show', compact('movie'));
     }
 
@@ -26,11 +28,7 @@ class MoviesController extends Controller
 
     public function store(CreateMovieRequest $request)
     {
-        // $post = new Post;
-        // $post->title = $request->get('title');
-        // $post->body = $request->get('body');
-        // $post->is_published = $request->get('is_published', false); // ako nemamo vrednost stavljamo false
-        // $post->save();
+
 
         $data = $request->validated();
 
